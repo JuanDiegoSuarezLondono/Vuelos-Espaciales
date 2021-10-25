@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes, PreloadAllModules } from '@angular/router';
 import { LayoutComponent } from './layout/layout.component';
+import { CheckLoginGuard } from './shared/guards/check-login.guard';
 
 const routes: Routes = [
   {
@@ -14,10 +15,15 @@ const routes: Routes = [
     },
     {
       path: 'home',
+      canActivate: [CheckLoginGuard],
       loadChildren: () => import('./home/home.module').then(m => m.HomeModule)
     },
   ],
-  }
+  },
+  {
+    path: 'auth',
+    loadChildren: () => import('./auth/auth.module').then(m => m.AuthModule)
+  },
 ];
 
 @NgModule({
