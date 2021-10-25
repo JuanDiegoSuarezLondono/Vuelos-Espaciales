@@ -1,0 +1,9 @@
+<div class="row" *ngFor="let user of users">
+    El usuario
+    <strong>{{user.user}}</strong> 
+    es un <strong>{{user.role | usertype}}</strong>
+    <div id="buttons">
+        <button type="button" id="programar">¡Editar!</button>
+        <button type="button" id="quitar">Eliminar</button>
+    </div>
+</div>

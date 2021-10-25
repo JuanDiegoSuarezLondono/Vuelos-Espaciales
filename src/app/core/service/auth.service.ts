@@ -28,6 +28,7 @@ export class AuthService {
     .post<UserResponse>(`${environment.API_ULR}/auth/login`,authData)
     .pipe(
       map((res:UserResponse) => {
+        localStorage.setItem('role', res.role.toString());
         this.saveToken(res.token);
         this.loggedIn.next(true);
         return res;

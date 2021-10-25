@@ -1,0 +1,17 @@
+<div class="row" *ngFor="let trip of trips">
+    Hay un viaje disponible a 
+    <strong>{{trip.go_to}}</strong> 
+    el <strong>{{trip.out_time | date: "yyyy-MM-dd" }}</strong>
+    y llega el dia <strong>{{trip.arrive_time | date: "yyyy-MM-dd" }}</strong>
+    <div id="buttons">
+        <button type="button" id="programar">¡Programar!</button>
+        <button type="button" id="quitar">Ya no quiero</button>
+    </div>
+    <div id="admButtons" *ngIf="role == 0">
+        <button type="button" id="editar">Editar</button>
+        <button type="button" id="eliminar">Eliminar</button>
+    </div>
+</div>
+<button *ngIf="role == 0" type="button" id="agregar">Agregar</button>
+
+

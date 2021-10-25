@@ -1,6 +1,7 @@
 <nav>
     <a mat-button routerLink="/home" routerLinkActive="active">Home</a>
-    <a mat-button routerLink="/Vuelos" routerLinkActive="active">Vuelos</a>
-    <a mat-button routerLink="/Astronautas" routerLinkActive="active">Astronautas</a>
+    <a mat-button routerLink="/trips" routerLinkActive="active">Viajes</a>
+    <a *ngIf="role == 0" routerLink="/users" routerLinkActive="active">Astronautas</a>
+    <a mat-button routerLink="/reservations" routerLinkActive="active">reservas</a>
     <a mat-button (click)="onLogout()">Log Out</a>
   </nav>

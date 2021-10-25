@@ -18,6 +18,21 @@ const routes: Routes = [
       canActivate: [CheckLoginGuard],
       loadChildren: () => import('./home/home.module').then(m => m.HomeModule)
     },
+    {
+      path: 'users',
+      canActivate: [CheckLoginGuard],
+      loadChildren: () => import('./users/users.module').then(m => m.UsersModule)
+    },
+    {
+      path: 'trips',
+      canActivate: [CheckLoginGuard],
+      loadChildren: () => import('./trips/trips.module').then(m => m.TripsModule)
+    },
+    {
+      path: 'reservations',
+      canActivate: [CheckLoginGuard],
+      loadChildren: () => import('./reservations/reservations.module').then(m => m.ReservationsModule)
+    },
   ],
   },
   {

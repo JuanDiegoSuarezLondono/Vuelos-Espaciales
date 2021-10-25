@@ -9,5 +9,6 @@ export interface UserResponse {
     message: string;
     token: string;
     userId: number;
+    user: string
     role: Roles;
 }
