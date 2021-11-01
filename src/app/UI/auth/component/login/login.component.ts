@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { Form, FormBuilder } from '@angular/forms';
-import { AuthService } from 'src/app/core/service/auth.service';
+import { FormBuilder } from '@angular/forms';
 import { Router } from '@angular/router';
+import { LoginAuthUseCase } from 'src/app/user/application/use_case_auth/login-auth.usecase';
 
 @Component({
   selector: 'app-login',
@@ -14,14 +14,14 @@ export class LoginComponent implements OnInit {
     password: [''],
   });
 
-  constructor(private authSvc: AuthService, private fb:FormBuilder, private router: Router) { }
+  constructor(private login:LoginAuthUseCase, private fb:FormBuilder, private router: Router) { }
 
   ngOnInit(): void {
   }
 
   onLogin(): void {
     const formValue = this.loginForm.value;
-    this.authSvc.login(formValue).subscribe(res => {
+    this.login.login(formValue).subscribe(res => {
       if(res){
         this.router.navigate(['']);
       }

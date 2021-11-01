@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes, PreloadAllModules } from '@angular/router';
-import { LayoutComponent } from './layout/layout.component';
-import { CheckLoginGuard } from './shared/guards/check-login.guard';
+import { LayoutComponent } from './UI/layout/layout.component';
+import { CheckLoginGuard } from './UI/shared/guards/check-login.guard';
 
 const routes: Routes = [
   {
@@ -16,28 +16,28 @@ const routes: Routes = [
     {
       path: 'home',
       canActivate: [CheckLoginGuard],
-      loadChildren: () => import('./home/home.module').then(m => m.HomeModule)
+      loadChildren: () => import('./UI/home/home.module').then(m => m.HomeModule)
     },
     {
       path: 'users',
       canActivate: [CheckLoginGuard],
-      loadChildren: () => import('./users/users.module').then(m => m.UsersModule)
+      loadChildren: () => import('./UI/users/users.module').then(m => m.UsersModule)
     },
     {
       path: 'trips',
       canActivate: [CheckLoginGuard],
-      loadChildren: () => import('./trips/trips.module').then(m => m.TripsModule)
+      loadChildren: () => import('./UI/trips/trips.module').then(m => m.TripsModule)
     },
     {
       path: 'reservations',
       canActivate: [CheckLoginGuard],
-      loadChildren: () => import('./reservations/reservations.module').then(m => m.ReservationsModule)
+      loadChildren: () => import('./UI/reservations/reservations.module').then(m => m.ReservationsModule)
     },
   ],
   },
   {
     path: 'auth',
-    loadChildren: () => import('./auth/auth.module').then(m => m.AuthModule)
+    loadChildren: () => import('./UI/auth/auth.module').then(m => m.AuthModule)
   },
 ];
 

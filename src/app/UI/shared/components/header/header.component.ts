@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { AuthService } from 'src/app/core/service/auth.service';
-
+import { Router } from '@angular/router';
+import { LogoutAuthUseCase } from 'src/app/user/application/use_case_auth/logout-auth.usecase';
 
 @Component({
   selector: 'app-header',
@@ -11,7 +11,7 @@ export class HeaderComponent implements OnInit {
 
   role = localStorage.getItem('role') || 1;
 
-  constructor(private authSvc:AuthService) {
+  constructor(private logout:LogoutAuthUseCase, private router:Router) {
 
    }
 
@@ -19,7 +19,8 @@ export class HeaderComponent implements OnInit {
   }
 
   onLogout():void {
-    this.authSvc.logout();
+    this.logout.logout();
+    this.router.navigate(['/auth']);
   }
 
 }

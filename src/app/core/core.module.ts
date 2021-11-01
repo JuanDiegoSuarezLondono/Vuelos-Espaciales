@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { TripsService } from './service/trips.service';
-import { UsersService } from './service/users.service';
+import { UsersService } from '../user/framework/controllers/users.service';
 import { ReservationsService } from './service/reservations.service';
 
 

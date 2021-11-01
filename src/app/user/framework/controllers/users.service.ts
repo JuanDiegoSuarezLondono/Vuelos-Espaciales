@@ -3,16 +3,17 @@ import { Injectable } from '@angular/core';
 import { Observable, throwError } from 'rxjs';
 import { catchError, map } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
-import { UserResponse } from '../models/user.model';
+import { UserResponse } from '../../domain/models/user.model';
+import { UserGateway } from '../../domain/services/user-gateway';
 
 @Injectable({
   providedIn: 'root'
 })
-export class UsersService {
+export class UsersService extends UserGateway{
 
-  constructor( private http: HttpClient) { }
+  constructor( private http: HttpClient) {super();}
 
-  getAllUsers() {
+  getAllUsers(): Observable<UserResponse[]> {
     const headers= new HttpHeaders()
     .set("auth", localStorage.getItem('token') || "");
 
@@ -20,7 +21,7 @@ export class UsersService {
     .get<UserResponse[]>(`${environment.API_ULR}/users`, {headers});
   }
 
-  getUser(): Observable<UserResponse | void> {
+  getUser(): Observable<void | UserResponse> {
     const userId = localStorage.getItem('user') || '';
     const headers= new HttpHeaders()
     .set("auth", localStorage.getItem('token') || "");
@@ -33,8 +34,8 @@ export class UsersService {
           catchError((err) => this.handlerError(err))
         );
   }
-
-  private handlerError(err: { message: any; }): Observable<never>{
+  
+  private handlerError(err: { message: any; }): Observable<never> {
     let errorMessage = 'An error ocurred';
     if (err) {
       errorMessage = `Error: code ${err.message}`;

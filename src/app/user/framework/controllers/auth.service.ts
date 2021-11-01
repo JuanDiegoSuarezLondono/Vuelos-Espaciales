@@ -2,25 +2,23 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable, throwError } from 'rxjs';
 import { environment } from 'src/environments/environment';
-import { User, UserResponse } from '../models/user.model';
+import { User, UserResponse } from '../../domain/models/user.model';
 import { catchError, map } from 'rxjs/operators';
 import { JwtHelperService } from '@auth0/angular-jwt';
-import { Router } from '@angular/router';
-
+import { AuthGateWay } from '../../domain/services/auth-gateway';
 
 const helper = new JwtHelperService();
+
 @Injectable({
   providedIn: 'root'
 })
-export class AuthService {
+
+export class AuthService extends AuthGateWay{
   private loggedIn = new BehaviorSubject<boolean>(false);
 
-  constructor(private http:HttpClient, private router:Router) {
+  constructor(private http:HttpClient) {
+    super();
     this.checkToken();
-   }
-
-   get isLogged():Observable<boolean>{
-     return this.loggedIn.asObservable();
    }
 
   login(authData:User): Observable<UserResponse | void> {
@@ -40,7 +38,6 @@ export class AuthService {
   logout():void{
     localStorage.removeItem('token');
     this.loggedIn.next(false);
-    this.router.navigate(['/auth']);
   }
 
   checkToken():boolean{

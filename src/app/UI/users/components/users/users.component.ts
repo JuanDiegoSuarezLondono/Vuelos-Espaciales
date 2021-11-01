@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { UserResponse } from 'src/app/core/models/user.model';
-import { UsersService } from 'src/app/core/service/users.service';
+import { GetAllUsersUseCase } from 'src/app/user/application/use_case_user/get-all-users.usecase';
+import { UserResponse } from 'src/app/user/domain/models/user.model';
 
 @Component({
   selector: 'app-users',
@@ -11,14 +11,14 @@ export class UsersComponent implements OnInit {
 
   users : UserResponse[] = [];
 
-  constructor(private userServ:UsersService) { }
+  constructor(private getAllUsers:GetAllUsersUseCase) { }
 
   ngOnInit(): void {
-    this.fetchUsers();
+    this.getUsers();
   }
 
-  fetchUsers() {
-    this.userServ.getAllUsers()
+  getUsers() {
+    this.getAllUsers.getAllUsers()
     .subscribe(users => {
       this.users = users;
     });
