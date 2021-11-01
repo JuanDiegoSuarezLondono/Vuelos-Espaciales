@@ -11,6 +11,6 @@ export class GetTripIdUseCase {
     constructor(private tripGateWay:TripGateWay){}
 
     getTrip():Observable<Trip>{
-        return this.tripGateWay.getTrId();
+        return this.tripGateWay.getTripId();
     }
 }

@@ -21,6 +21,10 @@ export class AuthService extends AuthGateWay{
     this.checkToken();
    }
 
+   get isLogged():Observable<boolean>{
+    return this.loggedIn.asObservable();
+  }
+
   login(authData:User): Observable<UserResponse | void> {
     return this.http
     .post<UserResponse>(`${environment.API_ULR}/auth/login`,authData)

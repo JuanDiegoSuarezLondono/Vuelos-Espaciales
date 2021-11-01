@@ -11,6 +11,8 @@ import { AuthGateWay } from './user/domain/services/auth-gateway';
 import { AuthService } from './user/framework/controllers/auth.service';
 import { TripGateWay } from './trip/domain/services/trip-gateway';
 import { TripsService } from './trip/framework/controllers/trips.service';
+import { ReservationGateWay } from './reservation/domain/services/reservation-gateway';
+import { ReservationsService } from './reservation/framework/controllers/reservations.service';
 
 @NgModule({
   declarations: [
@@ -26,7 +28,8 @@ import { TripsService } from './trip/framework/controllers/trips.service';
   providers: [
     {provide: UserGateway, useClass: UsersService},
     {provide: AuthGateWay, useClass: AuthService},
-    {provide: TripGateWay, useClass: TripsService}
+    {provide: TripGateWay, useClass: TripsService},
+    {provide:ReservationGateWay, useClass: ReservationsService}
   ],
   bootstrap: [AppComponent]
 })
