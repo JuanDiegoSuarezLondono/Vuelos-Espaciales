@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { TripsService } from 'src/app/core/service/trips.service';
-import { Trip } from 'src/app/core/models/trip.model';
+import { Trip } from 'src/app/trip/domain/model/trip.model';
+import { GetAllTripsUseCase } from 'src/app/trip/application/use_case_trip/get-all-trips.usecase';
 
 @Component({
   selector: 'app-trips',
@@ -11,7 +11,7 @@ export class TripsComponent implements OnInit {
 
   trips : Trip[] = [];
 
-  constructor(private tripsServ:TripsService) { }
+  constructor(private getAllTrips:GetAllTripsUseCase) { }
 
   role = localStorage.getItem('role') || 1;
 
@@ -20,7 +20,7 @@ export class TripsComponent implements OnInit {
   }
 
   fetchTrips() {
-    this.tripsServ.getAllTrips()
+    this.getAllTrips.getAllTrips()
     .subscribe(trips => {
       this.trips = trips;
     });
